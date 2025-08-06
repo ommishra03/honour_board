@@ -76,10 +76,7 @@ tbody td {
   white-space: nowrap;
 }
 
-tbody td.highlight {
-  color: #98fb98;
-  font-weight: bold;
-}
+/* Removed .highlight styling */
 
 footer {
   margin-top: 30px;
