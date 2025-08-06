@@ -18,14 +18,7 @@ function loadCSV(url, callback) {
       tbody.innerHTML = data
         .map(row =>
           '<tr>' +
-          row
-            .map(cell => {
-              const trimmed = cell.trim();
-              const highlight =
-                /steve|john|michael|champion|player/i.test(trimmed) ? 'highlight' : '';
-              return `<td class="${highlight}">${trimmed}</td>`;
-            })
-            .join('') +
+          row.map(cell => `<td>${cell.trim()}</td>`).join('') +
           '</tr>'
         )
         .join('');
