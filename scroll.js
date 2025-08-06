@@ -30,15 +30,29 @@ function loadCSV(url, callback) {
 function startAutoScroll() {
   const container = document.querySelector('.table-wrapper');
   let scrollY = 0;
+  let isPaused = false;
+  let pauseTimeout;
 
   function scroll() {
-    scrollY += 0.2;
-    container.scrollTop = scrollY;
-    if (scrollY >= container.scrollHeight - container.clientHeight) {
-      scrollY = 0;
+    if (!isPaused) {
+      scrollY += 0.2;
+      container.scrollTop = scrollY;
+      if (scrollY >= container.scrollHeight - container.clientHeight) {
+        scrollY = 0;
+      }
     }
     requestAnimationFrame(scroll);
   }
+
+  // Pause auto-scroll when user interacts
+  container.addEventListener('wheel', () => {
+    isPaused = true;
+    clearTimeout(pauseTimeout);
+    pauseTimeout = setTimeout(() => {
+      scrollY = container.scrollTop;
+      isPaused = false;
+    }, 3000);
+  });
 
   scroll();
 }
