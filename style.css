@@ -7,9 +7,9 @@ body {
 }
 
 .board-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 header {
@@ -19,35 +19,48 @@ header {
 }
 
 .club-logo {
-  width: 120px;
+  width: 100px;
+  max-width: 30vw;
+  display: block;
   margin: 0 auto;
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2em;
   margin: 10px 0 0;
   font-weight: bold;
 }
 
 h2 {
-  font-size: 1.8em;
+  font-size: 1.3em;
   margin: 5px 0 20px;
   letter-spacing: 2px;
   font-weight: bold;
   color: #d4af37;
 }
 
+/* Responsive scroll container */
 .table-wrapper {
-  max-height: 500px;
-  overflow: hidden;
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
   border: 2px solid #d4af37;
   border-radius: 6px;
+  scroll-behavior: smooth;
+
+  /* Hide scrollbar (Chrome, Edge, Safari) */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+}
+.table-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 
+/* Responsive Table */
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 1.1em;
+  font-size: 1em;
   table-layout: fixed;
 }
 
@@ -58,31 +71,61 @@ thead tr {
 thead th {
   color: #ffe4b5;
   padding: 12px;
-  border: 1px solid #d4af37;
+  border: 2px solid #d4af37; /* bold border */
   text-transform: uppercase;
   font-weight: bold;
   text-align: center;
+  word-wrap: break-word;
 }
 
 tbody td {
   color: #f5f5dc;
   padding: 10px;
-  border: 1px solid #d4af37;
+  border: 2px solid #d4af37; /* bold border */
   text-align: center;
   background-color: rgba(49, 19, 7, 0.71);
-  height: 50px;
+  height: 45px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-/* Removed .highlight styling */
-
+/* Make footer logo responsive */
 footer {
   margin-top: 30px;
   text-align: center;
 }
 
 .footer-logo {
-  width: 200px;
+  width: 150px;
+  max-width: 40vw;
+}
+
+/* Responsive text and spacing */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.6em;
+  }
+
+  h2 {
+    font-size: 1.1em;
+  }
+
+  thead th, tbody td {
+    font-size: 0.9em;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.4em;
+  }
+
+  h2 {
+    font-size: 1em;
+  }
+
+  .club-logo, .footer-logo {
+    width: 80px;
+  }
 }
